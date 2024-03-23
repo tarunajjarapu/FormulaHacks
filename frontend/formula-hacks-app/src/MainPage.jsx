@@ -72,7 +72,7 @@ class IngredientList extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {ingredients.map((ingredient, index) => (
+            {ingredients.filter((x) => x.name.length < 15).map((ingredient, index) => (
               <tr key={index}>
                 <td style={{ textAlign: 'center' }}>{ingredient.name}</td>
                 <td style={{ textAlign: 'center' }}>{ingredient.quantity}</td>
