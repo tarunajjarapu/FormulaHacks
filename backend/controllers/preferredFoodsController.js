@@ -20,13 +20,7 @@ const recommendMeals = asyncHandler(async (req, res) => {
             console.error('Error connecting to MongoDB:');
         }
         const diet_restr = get_dietary_restrictions();
-        const prompt = `Using the JSON list of ingredients provided below, provide a meal plan with multiple meals
-        based on the name category. Make sure to consider the expiration date (labeled end) and prioritize 
-        Only use the list of ingredients provided to you below as the context, and do not add any ingredients.
-        Also keep in mind the dietary restrictions mentioned below. Try not to add any
-        ingredients that expire earlier. Also consider the quantity of each food item. Once you've used an ingredient once, don't use it for another meal. 
-        ingredients, but if you do, include a 'not provided' in the string. Do not provide meals that only use ingredients that are not listed below. 
-        Only return the response in the JSON schema format ` + json_schema + `.\n` + `Ingredients:\n` + ingr_json + `Dietary Restrictions:\n` + diet_restr
+        const prompt = `Using the dietary preferences below, suggest a list of meals for the next week. `
         const result = await model.generateContent(prompt);
         const response = await result.response;
         const text = JSON.parse(response.text());
