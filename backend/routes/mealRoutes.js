@@ -4,6 +4,7 @@ const { makeMeals, getIngredientsList } = require('../controllers/generateContro
 const { recommendMeals } = require('../controllers/preferredFoodsController')
 const { makeGroceries } = require('../controllers/generateGroceriesController')
 const { parseReceipt } = require('../controllers/receiptController')
+const { getAllFavoriteMeals } = require('../controllers/getAllFavoriteMealsController')
 
 const multer = require('multer');
 const storage = multer.memoryStorage();
@@ -14,5 +15,6 @@ router.get('/getIngredientsList', getIngredientsList)
 router.put('/parseReceipt', upload.single('image'), parseReceipt)
 router.get('/recommendMeals', recommendMeals)
 router.get('/makeGroceries', makeGroceries)
+router.get('/getAllFavoriteMeals', getAllFavoriteMeals)
 
 module.exports = router;
