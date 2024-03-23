@@ -6,7 +6,7 @@ const profileSchema = new mongoose.Schema({
       required: true, 
     },
     budget: {
-        type: Number,
+        type: String,
         required: true, 
     },
     numOfMeals: {
@@ -14,13 +14,9 @@ const profileSchema = new mongoose.Schema({
         required: true, 
     },
     cookingTime: {
-        type: Number,
+        type: String,
         required: true, 
-    },
-    type: {
-        type: Number,
-        required: true, 
-    },
+    }
   }, {collection: "profile"});
 
 module.exports = mongoose.model('Profile', profileSchema);
