@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { createMeals } = require('../controllers/aiController')
+const { makeMeals } = require('../controllers/generateController')
+const { parseReceipt } = require('../controllers/receiptController')
 
-router.put('/createQuestions', createMeals)
+router.put('/makeMeals', makeMeals)
+router.put('/parseReceipt', parseReceipt)
 
 module.exports = router;
