@@ -64,7 +64,7 @@ const Profile = () => {
             <Row className="justify-content-center align-items-center">
                 <Col xs={12} md={8}>
                     <Card style={{ boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px' }}>
-                        <Card.Header className="bg-info text-white" style={{textAlign: 'center', fontWeight:'bold'}}>User Profile</Card.Header>
+                    <Card.Header style={{backgroundColor: '#7851A9', color: "white", textAlign: 'center', fontWeight: 'bold'}}>User Profile</Card.Header>
                         <Card.Body>
                             <Row>
                                 <Col md={4} className="text-center">

@@ -18,8 +18,8 @@ const FoodCard = ({ food, onCheck, onCross }) => {
           </Card.Text>
         </Card.Body>
         <div>
-          <Button variant="success" className="right-button" onClick={onCheck}>✓</Button>
-          <Button variant="danger" className="left-button" onClick={onCross}>✗</Button>
+          <Button variant="success" className="right-button" onClick={onCheck} style={{backgroundColor: '#A9E2A9'}}>✓</Button>
+          <Button variant="danger" className="left-button" onClick={onCross} style={{backgroundColor: '#CA054D'}}>✗</Button>
         </div>
       </Card>
     </div>

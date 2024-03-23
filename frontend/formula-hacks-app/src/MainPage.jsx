@@ -82,7 +82,7 @@ class IngredientList extends React.Component {
             ))}
           </tbody>
         </table>
-        <Button variant="primary" onClick={this.props.onAdd}>Add Ingredient</Button>
+        <Button variant="primary" onClick={this.props.onAdd} style={{backgroundColor: '#7851A9', color: "white"}}>Add Ingredient</Button>
       </div>
     );
   }
@@ -92,7 +92,7 @@ const ProfileButton = () => {
   const navigate = useNavigate();
   return (
     <div className="profile-button" style={{ position: 'absolute', top: '10px', right: '10px', boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px' }}>
-       <Button variant="primary" onClick={() => navigate('/profile')}>Profile</Button>
+       <Button variant="primary" onClick={() => navigate('/profile')} style={{backgroundColor: '#7851A9', color: "white"}}>Profile</Button>
   </div>
   );
 };
@@ -105,7 +105,9 @@ const Buttons = () => {
     marginBottom: '20px',
     width: '400px',
     height: '80px',
-    boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px'
+    boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
+    backgroundColor: '#A9E2A9',
+    color: "black",
   };
   const handleGenerateGroceries = () => {
     // Navigate to the groceries page
@@ -183,7 +185,7 @@ const MainPage = () => {
           <Button variant="secondary" onClick={handleCloseAddModal}>
             Close
           </Button>
-          <Button variant="primary">
+          <Button variant="primary" style={{backgroundColor: '#7851A9', color: "white"}}>
             Save Changes
           </Button>
         </Modal.Footer>

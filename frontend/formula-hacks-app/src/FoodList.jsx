@@ -130,7 +130,7 @@ const FoodList = () => {
           <div className="no-meal-available"></div>
         )}
         {currentIndex >= foods.length && (
-          <button className="btn btn-success btn-lg fetch-button" onClick={() => fetchMeals()} disabled={isLoading}>
+          <button className="btn btn-success btn-lg fetch-button" onClick={() => fetchMeals()} disabled={isLoading} style={{backgroundColor: '#A9E2A9'}}>
             {isLoading ? <Spinner as="span" animation="border" size="sm" /> : 'Fetch More Meals'}
           </button>
         )}

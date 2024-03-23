@@ -49,7 +49,9 @@ const UploadPicture = () => {
     width: '400px',
     height: '80px',
     boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
-    marginTop: '20px'
+    marginTop: '20px',
+    backgroundColor: '#96CDFF',
+    color: "black"
   };
 
   return (

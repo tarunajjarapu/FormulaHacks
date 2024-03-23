@@ -22,7 +22,7 @@ const GroceryList = () => {
   }, []);
 
   return (
-    <Container className="mt-4">
+    <Container className="mt-4" style={{textAlign: 'center'}}>
       <h2>Grocery List</h2>
       <Table striped bordered hover>
         <thead>
