@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Button, Modal, Form } from 'react-bootstrap';
 import UploadPicture from './UploadPicture';
+import { useNavigate } from 'react-router-dom';
 
 class IngredientList extends React.Component {
   constructor(props) {
@@ -47,14 +48,16 @@ class IngredientList extends React.Component {
 }
 
 const ProfileButton = () => {
+  const navigate = useNavigate();
   return (
     <div className="profile-button" style={{ position: 'absolute', top: '10px', right: '10px', boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px' }}>
-    <Button variant="primary">Profile</Button>
+       <Button variant="primary" onClick={() => navigate('/profile')}>Profile</Button>
   </div>
   );
 };
 
 const Buttons = () => {
+  const navigate = useNavigate();
   const buttonStyle = {
     fontSize: '24px',
     padding: '20px',
@@ -66,9 +69,9 @@ const Buttons = () => {
 
   return (
     <div className="buttons">
-      <Button variant="success" block style={buttonStyle}>
-        Generate Meals
-      </Button>
+        <Button variant="success" block style={buttonStyle} onClick={() => navigate('/food-list')}> 
+          Generate Meals
+        </Button>
       <div style={{ marginTop: '20px' }}></div>
       <Button variant="info" block style={buttonStyle}>
         Generate Groceries
