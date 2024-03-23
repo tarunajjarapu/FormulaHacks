@@ -3,6 +3,8 @@ import { Container, Row, Col, Card, Form } from 'react-bootstrap';
 import profilePicture from './assets/profile-picture.png';
 import salad from './assets/salad.jpg';
 import spaghetti from './assets/spaghetti.jpg';
+import smores from './assets/smores.jpg'
+import taco from './assets/taco.jpg'
 import FavoriteCard from './FavoriteCard';
 import './Profile.css';
 
@@ -53,10 +55,10 @@ const Profile = () => {
 
     // Sample food data for FoodCards
     const foodData = [
-        { name: "Spaghetti", ingredients: ["Pasta", "Tomato Sauce"], image: spaghetti },
+        { name: "Spaghetti", ingredients: ["Pasta", "Tomato Sauce, Basil"], image: spaghetti },
         { name: "Salad", ingredients: ["Lettuce", "Tomatoes", "Cucumbers"], image: salad },
-        { name: "Salad", ingredients: ["Lettuce", "Tomatoes", "Cucumbers"], image: salad },
-        { name: "Salad", ingredients: ["Lettuce", "Tomatoes", "Cucumbers"], image: salad },
+        { name: "Taco", ingredients: ["Lettuce", "Tomatoes", "Tortilla"], image: taco },
+        { name: "S'Mores", ingredients: ["Chocolate", "Crackers", "Marshmallow"], image: smores },
         // Add more food items as needed
     ];
 
