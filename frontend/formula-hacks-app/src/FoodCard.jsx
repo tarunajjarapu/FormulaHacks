@@ -1,13 +1,16 @@
 import React from 'react';
-import { Card, Button } from 'react-bootstrap';
+import { Card, Button, Row, Col } from 'react-bootstrap';
+import './FoodCard.css';
 
 const FoodCard = ({ food }) => {
   return (
-    <div className="food-card">
-      <Card style={{ width: '18rem' }}>
-        {food.image && <Card.Img variant="top" src={food.image} />}
+    <div className="food-card" style={{boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px'}}>
+
+      {/* Card */}
+      <Card style={{ width: '18rem'}}>
+        {food.image && <Card.Img variant="top" src={food.image} style={{height:'40%'}} />}
         <Card.Body>
-          <Card.Title><strong>{food.name}</strong></Card.Title>
+          <Card.Title style={{ textAlign: 'center'}}><strong>{food.name}</strong></Card.Title>
           <Card.Text>
             <h6>Ingredients:</h6>
             <ul>
@@ -16,11 +19,14 @@ const FoodCard = ({ food }) => {
               ))}
             </ul>
           </Card.Text>
-          <Button variant="success">&#x2713;</Button>{' '}
-          <Button variant="danger">&#x2717;</Button>
         </Card.Body>
+        <div>
+    <Button variant="success" className="right-button">✓</Button>
+    <Button variant="danger" className="left-button">✗</Button>
+    </div>
       </Card>
     </div>
+
   );
 };
 

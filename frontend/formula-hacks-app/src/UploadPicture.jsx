@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
-import FoodCard from './FoodCard';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import './FoodList.css';
-import { Spinner } from 'react-bootstrap';
+import { Spinner, Button } from 'react-bootstrap'; // Import Button from react-bootstrap
 
-const FoodList = () => {
-  const [foods, setFoods] = useState([]);
+const UploadPicture = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
 
@@ -69,17 +66,28 @@ const FoodList = () => {
       });
   };
 
+  const buttonStyle = {
+    fontSize: '24px',
+    padding: '20px',
+    marginBottom: '20px',
+    width: '400px',
+    height: '80px',
+    boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
+    marginTop: '20px'
+  };
+
   return (
-    <div className="food-list">
-      <div className="file-upload">
-        <input type="file" onChange={handleFileChange} />
-        <button onClick={uploadFile} disabled={isLoading}>
-          {isLoading ? <Spinner as="span" animation="border" size="sm" /> : 'Upload File'}
-        </button>
-      </div>
+    <div className="upload-picture">
+      <input type="file" onChange={handleFileChange} style={{ display: 'none' }} />
+      <Button variant="info" block style={buttonStyle} onClick={() => document.querySelector('input[type="file"]').click()}>
+        Choose File
+      </Button>
+      <Button variant="success" block style={buttonStyle} onClick={uploadFile} disabled={isLoading}>
+        {isLoading ? <Spinner as="span" animation="border" size="sm" /> : 'Upload Picture'}
+      </Button>
       <ToastContainer />
     </div>
   );
 };
 
-export default FoodList;
+export default UploadPicture;
