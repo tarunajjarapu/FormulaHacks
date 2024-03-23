@@ -1,5 +1,5 @@
 const asyncHandler = require('express-async-handler')
-const Info = require('../models/mealsModel')
+const Info = require('../models/mealModel')
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 const generationConfig = {

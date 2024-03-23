@@ -1,5 +1,5 @@
 const asyncHandler = require('express-async-handler')
-const Info = require('../models/mealsModel')
+const Info = require('../models/mealModel')
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 function get_ingr_list() {
@@ -8,7 +8,7 @@ function get_ingr_list() {
 
 const makeMeals = asyncHandler(async (req, res) => {
     try {
-        
+
         const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
         const model = genAI.getGenerativeModel({ model: "gemini-pro"});
         const ingr_json = get_ingr_list();
