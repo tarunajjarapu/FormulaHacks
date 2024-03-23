@@ -14,19 +14,12 @@ const recommendMeals = asyncHandler(async (req, res) => {
         const model = genAI.getGenerativeModel({ model: "gemini-pro"}); 
         const json_schema = `{["Meal":{"meal name":<string>,"ingredients":[<string>, <string>]},
         "Meal":{"meal name":<string>,"ingredients":[<string>, <string>]}]}`;
-        const ingr_json = await listIngredients();
-        // console.log("ingr_json:\n" + ingr_json);
-        if (ingr_json === null) {
-            console.error('Error connecting to MongoDB:');
-        }
-        const diet_restr = get_dietary_restrictions();
-        const prompt = `Using the dietary preferences below, suggest a list of meals for the next week. `
+        const user_pref = await getProfile();
+        const prompt = `Using the dietary preferences below, suggest a list of meals for the next week. Put the list of meals in a JSON
+        format as described by the schema below: \n` + json_schema + "\n Here are the user preferences: \n" + user_pref;
         const result = await model.generateContent(prompt);
         const response = await result.response;
         const text = JSON.parse(response.text());
-        // const apiRes = {
-        //     meals: text,
-        // };
         res.status(201).json(text)
     } catch (error) {
         console.error(error);
