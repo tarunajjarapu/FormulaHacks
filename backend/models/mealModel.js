@@ -5,6 +5,10 @@ const mealSchema = new mongoose.Schema({
       type: String,
       required: true, 
     },
+    ingredients: {
+      type: String,
+      required: true,
+    }
   }, {collection: "meal"});
 
 module.exports = mongoose.model('Meal', mealSchema);
