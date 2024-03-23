@@ -1,11 +1,24 @@
 const asyncHandler = require('express-async-handler')
-const Info = require('../models/mealModel')
+const Info = require('../models/mealsModel')
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
-const createMeals = asyncHandler(async (req, res) => {
-    try {
-        const model = genAI.getGenerativeModel({ model: "gemini-pro-vision", generationConfig });
+const generationConfig = {
+    temperature: 1
+};
 
+function fileToGenerativePart(path, mimeType) {
+    return {
+      inlineData: {
+        data: Buffer.from(fs.readFileSync(path)).toString("base64"),
+        mimeType
+      },
+    };
+  }
+
+const parseReceipt = asyncHandler(async (req, res) => {
+    try {
+        const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+        const model = genAI.getGenerativeModel({ model: "gemini-pro-vision", generationConfig });
         const prompt =`Given the image of the attached receipt, extract and display the following in a consistent format:
         
         - Receipt purchase date
@@ -22,8 +35,6 @@ const createMeals = asyncHandler(async (req, res) => {
         const result = await model.generateContent([prompt, ...imageParts]);
         const response = await result.response;
         const text = response.text();
-        console.log(text);
-
         const apiRes = {
             meals: text,
         };
@@ -35,5 +46,5 @@ const createMeals = asyncHandler(async (req, res) => {
 })
 
 module.exports = {
-    createMeals
+    parseReceipt
 }
