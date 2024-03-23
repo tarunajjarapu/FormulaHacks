@@ -14,7 +14,7 @@ const recommendMeals = asyncHandler(async (req, res) => {
         const model = genAI.getGenerativeModel({ model: "gemini-pro"}); 
         const json_schema = `{["Meal":{"meal name":<string>,"ingredients":[<string>, <string>]},
         "Meal":{"meal name":<string>,"ingredients":[<string>, <string>]}]}`;
-        const user_pref = await getUserPreferences();
+        const user_pref = await getProfile();
         const prompt = `Using the dietary preferences below, suggest a list of meals for the next week. Put the list of meals in a JSON
         format as described by the schema below: \n` + json_schema + "\n Here are the user preferences: \n" + user_pref;
         const result = await model.generateContent(prompt);
