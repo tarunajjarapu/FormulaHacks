@@ -62,12 +62,54 @@ const FoodList = () => {
         }
       });
   };
-
   const handleCheck = () => {
-    // Handle the logic when the user checks the food
-    // For simplicity, let's just move to the next card
     if (currentIndex < foods.length) {
-      setCurrentIndex(prevIndex => prevIndex + 1);
+      const currentMeal = foods[currentIndex];
+      const mealName = currentMeal.name;
+      const ingredientsList = currentMeal.ingredients.join(', '); // Join ingredients into a comma-separated string
+  
+      const requestBody = {
+        meal_name: mealName,
+        ingredients: ingredientsList
+      };
+  
+      fetch('http://localhost:8000/meals/addMeal', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(requestBody)
+      })
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          }
+          throw new Error('Network response was not ok.');
+        })
+        .then(data => {
+          toast.success("Meal added successfully.", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+          // Move to the next card
+          setCurrentIndex(prevIndex => prevIndex + 1);
+        })
+        .catch(error => {
+          toast.error(`Error adding meal: ${error.message}`, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        });
     }
   };
 
