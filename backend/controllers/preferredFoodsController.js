@@ -6,6 +6,16 @@ const mongoose = require('mongoose');
 const db = require('../config/db.js');
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const { json } = require('express');
+const Profile = require('../models/profileModel');
+
+const getProfile = async () => {
+    try {
+        const profile = await Profile.find();
+        return profile;
+    } catch (error) {
+        return null;
+    }
+};
 
 const recommendMeals = asyncHandler(async (req, res) => {
     try {
@@ -15,11 +25,14 @@ const recommendMeals = asyncHandler(async (req, res) => {
         const json_schema = `{["Meal":{"meal name":<string>,"ingredients":[<string>, <string>]},
         "Meal":{"meal name":<string>,"ingredients":[<string>, <string>]}]}`;
         const user_pref = await getProfile();
-        const prompt = `Using the dietary preferences below, suggest a list of meals for the next week. Put the list of meals in a JSON
-        format as described by the schema below: \n` + json_schema + "\n Here are the user preferences: \n" + user_pref;
+        const prompt = `Using the dietary preferences below, suggest an list of meals for the next week. Put the list of meals in a JSON
+        format as described by the schema below. JSON schema should have a size of 10. \n` + json_schema + `\n Do not return anything except the
+        JSON. Here are the user preferences: \n` + user_pref;
         const result = await model.generateContent(prompt);
         const response = await result.response;
-        const text = JSON.parse(response.text());
+        const text = JSON.parse(response.text().replace(/```|json/ig, "").trim());
+        console.log(text)
+        // const text = JSON.parse(response.text());
         res.status(201).json(text)
     } catch (error) {
         console.error(error);
