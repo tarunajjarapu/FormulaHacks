@@ -5,7 +5,7 @@ const db = require('../config/db.js');
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const { json } = require('express');
 
-const get_ingr_list = async () => {
+const listIngredients = async () => {
     try {
         const documents = await Ingredients.find({});
         // Convert documents to JSON
@@ -52,7 +52,7 @@ const makeMeals = asyncHandler(async (req, res) => {
         const model = genAI.getGenerativeModel({ model: "gemini-pro"}); 
         const json_schema = `{"Meal":{"meal name":<string>,"ingredients":[<string>, <string>]},
         "Meal":{"meal name":<string>,"ingredients":[<string>, <string>]}}`;
-        const ingr_json = await get_ingr_list();
+        const ingr_json = await listIngredients();
         console.log("ingr_json:\n" + ingr_json);
         if (ingr_json === null) {
             console.error('Error connecting to MongoDB:');
@@ -79,6 +79,19 @@ const makeMeals = asyncHandler(async (req, res) => {
     }
 })
 
+const getIngredientsList = asyncHandler(async (req, res) => {
+    try {
+        const documents = await Ingredients.find({});
+        // Convert documents to JSON
+        const jsonResult = JSON.stringify(documents, null, 2);
+        res.status(201).json(jsonResult) // Return JSON data
+    } catch (error) {
+        console.error('Error querying MongoDB:', error);
+        res.status(400)
+    }
+})
+
 module.exports = {
-    makeMeals
+    makeMeals,
+    getIngredientsList
 }
