@@ -61,17 +61,14 @@ const parseReceipt = asyncHandler(async (req, res) => {
         console.log(text);
         jsonText = JSON.parse(text);
 
-        let dbJson = {}
-
         jsonText.items.forEach(item => {
-            dbJson[item.name] = {
+            Ingredients.create({
+                name: item.name,
                 quantity: item.quantity,
                 start: jsonText.purchaseDate,
                 end: item.expirationDate
-            }
+            })
         });
-
-        Ingredients.create(dbJson);
 
         res.status(201).json(jsonText);
     } catch (error) {
