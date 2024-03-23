@@ -67,6 +67,7 @@ class IngredientList extends React.Component {
             <tr>
               <th>Name</th>
               <th>Quantity</th>
+              <th>Buy Date</th>
               <th>Expiration Date</th>
             </tr>
           </thead>
@@ -75,7 +76,8 @@ class IngredientList extends React.Component {
               <tr key={index}>
                 <td style={{ textAlign: 'center' }}>{ingredient.name}</td>
                 <td style={{ textAlign: 'center' }}>{ingredient.quantity}</td>
-                <td style={{ textAlign: 'center' }}>{ingredient.expirationDate}</td>
+                <td style={{ textAlign: 'center' }}>{ingredient.start}</td>
+                <td style={{ textAlign: 'center' }}>{ingredient.end}</td>
               </tr>
             ))}
           </tbody>
@@ -136,7 +138,7 @@ const MainPage = () => {
       <Container fluid className="d-flex align-items-center justify-content-center vh-100">
         <Row>
           <Col md={6} className="d-flex flex-column align-items-end" style={{ paddingRight: '5%' }}>
-            <div style={{ width: '120%', marginRight: '5%' }}>
+            <div style={{ width: '100%', marginRight: '5%' }}>
               <IngredientList onAdd={handleAddIngredient} />
             </div>
           </Col>
@@ -162,6 +164,10 @@ const MainPage = () => {
             <Form.Group controlId="ingredientQuantity">
               <Form.Label>Quantity</Form.Label>
               <Form.Control type="text" placeholder="Enter quantity" />
+            </Form.Group>
+            <Form.Group controlId="ingredientStartDate">
+              <Form.Label>Start Date</Form.Label>
+              <Form.Control type="date" />
             </Form.Group>
             <Form.Group controlId="ingredientExpirationDate">
               <Form.Label>Expiration Date</Form.Label>
