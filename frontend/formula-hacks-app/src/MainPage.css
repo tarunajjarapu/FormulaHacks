@@ -1,0 +1,55 @@
+.app-container {
+    display: flex;
+  }
+  
+  .ingredient-list {
+    flex: 1;
+    padding: 20px;
+    background-color: #f9f9f9; /* Off-white background color */
+    position: relative;
+  }
+  
+  .scrollable-list {
+    max-height: 300px;
+    overflow-y: auto;
+  }
+  
+  .ingredient-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .button-container {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+  }
+  
+  .plus-button,
+  .edit-button {
+    margin-left: 10px;
+    border-radius: 50%; /* Circular buttons */
+    width: 40px; /* Adjust button size as needed */
+    height: 40px;
+    background-color: #333; /* Button color */
+    color: white; /* Text color */
+    border: none;
+    cursor: pointer;
+  }
+  
+  .action-buttons {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .action-button {
+    margin-bottom: 10px;
+  }
+  
+  .profile-button {
+    padding: 20px;
+  }
+  
