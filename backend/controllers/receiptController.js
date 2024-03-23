@@ -18,7 +18,9 @@ function fileToGenerativePart(path, mimeType) {
 
 const parseReceipt = asyncHandler(async (req, res) => {
     try {
-
+        if (!req.file) {
+            return res.status(400).json({ message: 'No file uploaded' });
+        }
         const imageBuffer = req.file.buffer;
         const imageMimeType = req.file.mimetype;
 

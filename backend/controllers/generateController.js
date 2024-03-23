@@ -50,8 +50,15 @@ const makeMeals = asyncHandler(async (req, res) => {
         const GEMINI_API_KEY = "AIzaSyCTHER10arC87fY5JEDfxBnzsmyIhcKmQw"
         const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
         const model = genAI.getGenerativeModel({ model: "gemini-pro"}); 
-        const json_schema = `{"Meal":{"meal name":<string>,"ingredients":[<string>, <string>]},
-        "Meal":{"meal name":<string>,"ingredients":[<string>, <string>]}}`;
+        const json_schema = `[
+            {
+                "Meal": {
+                    "meal name": "Example Meal Name 1",
+                    "ingredients": ["Ingredient 1", "Ingredient 2"]
+                }
+            },
+        ]`;
+        
         const ingr_json = await listIngredients();
         console.log("ingr_json:\n" + ingr_json);
         if (ingr_json === null) {
