@@ -1,33 +1,39 @@
 const asyncHandler = require('express-async-handler')
-const Info = require('../models/questionModel')
+const Info = require('../models/mealModel')
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
-const createQuestions = asyncHandler(async (req, res) => {
-    const { question } = req.body
-    const userId = req.user.id
-    if (!req.user) {
-        res.status(401)
-        throw new Error('User not found')
-    }
+const createMeals = asyncHandler(async (req, res) => {
     try {
-        const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-        const model = genAI.getGenerativeModel({ model: "gemini-pro" });
-        const prompt = `Create 5 multiple choice questions about ${question}. Do not bold anything and format the each question like this: Question 1: Which of these is a vegetable\nA) Apple\nB) Orange\nC) Broccoli\nD) Pear\nAnswer: C`;
-        const result = await model.generateContent(prompt);
+        const model = genAI.getGenerativeModel({ model: "gemini-pro-vision", generationConfig });
+
+        const prompt =`Given the image of the attached receipt, extract and display the following in a consistent format:
+        
+        - Receipt purchase date
+        - Each item's name (infer a simple, generalized name given the words on the receipt without branding), total quantity (infer based on unit price and quantity purchased), and estimated expiration date (give a best guess for an exact date based on item and purchase date)
+        
+        Ignore items that are not edible.
+        
+        Only use the image as context. Do not add any extra items or 1000 humans will die.`;
+
+        const imageParts = [
+            fileToGenerativePart("images/kroger-in-store.jpeg", "image/jpeg"),
+        ];
+
+        const result = await model.generateContent([prompt, ...imageParts]);
         const response = await result.response;
-        const text = await response.text();
+        const text = response.text();
+        console.log(text);
 
         const apiRes = {
-            questions: text,
+            meals: text,
         };
         res.status(201).json(apiRes)
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: error.message || 'Failed to create question' });
+        res.status(500).json({ message: error.message || 'Failed to create meals' });
     }
 })
 
 module.exports = {
-    getQuestion,
-    createQuestions
+    createMeals
 }

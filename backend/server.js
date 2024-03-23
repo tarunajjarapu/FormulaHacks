@@ -12,7 +12,6 @@ connectDB()
 app.use(express.json())
 app.use(express.urlencoded({ extended : false }))
 
-app.use('/user', require('./routes/userRoutes'))
-app.use('/question', require('./routes/'))
+app.use('/meals', require('./routes/mealRoutes'))
 
 app.listen(port, () => console.log(`Server started on port ${port}`))

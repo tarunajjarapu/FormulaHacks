@@ -1,5 +1,4 @@
 const asyncHandler = require('express-async-handler')
-const Info = require('../models/questionModel')
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 const createQuestions = asyncHandler(async (req, res) => {
