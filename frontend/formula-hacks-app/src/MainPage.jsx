@@ -107,6 +107,10 @@ const Buttons = () => {
     height: '80px',
     boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px'
   };
+  const handleGenerateGroceries = () => {
+    // Navigate to the groceries page
+    navigate('/groceries');
+  };
 
   return (
     <div className="buttons">
@@ -114,7 +118,7 @@ const Buttons = () => {
           Generate Meals
         </Button>
       <div style={{ marginTop: '20px' }}></div>
-      <Button variant="info" block style={buttonStyle}>
+      <Button variant="info" block style={buttonStyle} onClick={handleGenerateGroceries}>
         Generate Groceries
       </Button>
     </div>
