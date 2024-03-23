@@ -25,9 +25,10 @@ const recommendMeals = asyncHandler(async (req, res) => {
         const json_schema = `{["Meal":{"meal name":<string>,"ingredients":[<string>, <string>]},
         "Meal":{"meal name":<string>,"ingredients":[<string>, <string>]}]}`;
         const user_pref = await getProfile();
-        const prompt = `Using the dietary preferences below, suggest an list of meals for the next week. Put the list of meals in a JSON
-        format as described by the schema below. JSON schema should have a size of 10. \n` + json_schema + `\n Do not return anything except the
+        const prompt = `Using the dietary preferences below, suggest a list of 10 meals for the next week. Put the list of meals in a JSON
+        format as described by the schema below. \n` + json_schema + `\n Do not return anything except the
         JSON. Here are the user preferences: \n` + user_pref;
+        // console.log("user pref: \n" + user_pref);
         const result = await model.generateContent(prompt);
         const response = await result.response;
         const text = JSON.parse(response.text().replace(/```|json/ig, "").trim());
