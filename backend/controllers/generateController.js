@@ -1,9 +1,24 @@
 const asyncHandler = require('express-async-handler')
-const Info = require('../models/mealModel')
+const Ingredients = require('../models/mealModel');
+const mongoose = require('mongoose');
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 function get_ingr_list() {
-    return "2 eggs, 1 tomatoes, 1 onions, 1 bell peppers, 1 garlic powder";
+    mongoose.connect('http://localhost:8000/meals/makeMeals', { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => {
+        console.log('Connected to MongoDB');
+        // Find all documents in the collection
+        return Ingredients.find({});
+    })
+    .then((documents) => {
+        // Convert documents to JSON
+        const jsonResult = JSON.stringify(documents, null, 2);
+        return jsonResult;
+    })
+    .catch((error) => {
+        console.error('Error connecting to MongoDB:', error);
+        return null;
+    });
 }
 
 function get_dietary_restrictions() {
@@ -17,6 +32,10 @@ const makeMeals = asyncHandler(async (req, res) => {
         const json_schema = `{"Meal":{"meal name":<string>,"ingredients":[<string>, <string>]},
         "Meal":{"meal name":<string>,"ingredients":[<string>, <string>]}}`;
         const ingr_json = get_ingr_list();
+        console.log("ingr_json:\n" + ingr_json);
+        if (ingr_json === null) {
+            console.error('Error connecting to MongoDB:');
+        }
         const diet_restr = get_dietary_restrictions();
         const prompt = `Using the JSON list of ingredients provided below, provide a meal plan 
         based on the name category. Don't return more than 10 meals. Make sure to consider the expiration date (labeled end) and prioritize 
