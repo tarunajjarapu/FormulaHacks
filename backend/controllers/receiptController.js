@@ -18,6 +18,10 @@ function fileToGenerativePart(path, mimeType) {
 
 const parseReceipt = asyncHandler(async (req, res) => {
     try {
+
+        const imageBuffer = req.file.buffer;
+        const imageMimeType = req.file.mimetype;
+
         const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
         const model = genAI.getGenerativeModel({ model: "gemini-pro-vision", generationConfig });
         const prompt = `Given the image of the attached receipt, extract and display the following in a consistent format:
@@ -51,16 +55,20 @@ const parseReceipt = asyncHandler(async (req, res) => {
         The JSON will be immediately parsed without any human intervention. If the JSON is not in the correct format, the response will be considered incorrect.;`
 
         const imageParts = [
-            fileToGenerativePart("/Users/akshatshah/Documents/Coding/FormulaHacks/backend/controllers/images/online-example-1.png", "image/png"),
+            {
+                inlineData: {
+                    data: imageBuffer.toString("base64"),
+                    mimeType: imageMimeType
+                }
+            }
         ];
 
         const result = await model.generateContent([prompt, ...imageParts]);
         const response = await result.response;
-        const text = response.text().replace("\`\`\`json", "");
+        const text = response.text().replace(/```|json/ig, "").trim();
         console.log(text);
         jsonText = JSON.parse(text);
-        console.log(jsonText.purchaseDate);
-        res.status(201).json(text);
+        res.status(201).json(jsonText);
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: error.message || 'Failed to create meals' });
