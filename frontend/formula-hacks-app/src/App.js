@@ -1,9 +1,9 @@
 import MainPage from './MainPage';
-import Card from './Card';
+import FoodList from './FoodList'
 
 function App() {
   return (
-    <Card />
+    <FoodList />
   );
 }
 
