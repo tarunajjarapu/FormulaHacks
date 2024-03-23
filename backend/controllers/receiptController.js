@@ -1,20 +1,10 @@
 const asyncHandler = require('express-async-handler');
-const Info = require('../models/mealModel');
-const fs = require('fs');
 const { GoogleGenerativeAI } = require("@google/generative-ai");
+const Ingredients = require('../models/ingredientModel');
 
 const generationConfig = {
     temperature: 1
 };
-
-function fileToGenerativePart(path, mimeType) {
-    return {
-      inlineData: {
-        data: Buffer.from(fs.readFileSync(path)).toString("base64"),
-        mimeType
-      },
-    };
-  }
 
 const parseReceipt = asyncHandler(async (req, res) => {
     try {
@@ -68,6 +58,19 @@ const parseReceipt = asyncHandler(async (req, res) => {
         const text = response.text().replace(/```|json/ig, "").trim();
         console.log(text);
         jsonText = JSON.parse(text);
+
+        let dbJson = {}
+
+        jsonText.items.forEach(item => {
+            dbJson[item.name] = {
+                quantity: item.quantity,
+                start: jsonText.purchaseDate,
+                end: item.expirationDate
+            }
+        });
+
+        Ingredients.create(dbJson);
+
         res.status(201).json(jsonText);
     } catch (error) {
         console.error(error);
