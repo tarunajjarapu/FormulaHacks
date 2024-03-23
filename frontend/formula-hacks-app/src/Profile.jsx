@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Form } from 'react-bootstrap';
 import profilePicture from './assets/profile-picture.png';
-import salad from './assets/salad.jpg';
-import spaghetti from './assets/spaghetti.jpg';
-import smores from './assets/smores.jpg'
-import taco from './assets/taco.jpg'
 import FavoriteCard from './FavoriteCard';
 import './Profile.css';
 
@@ -18,6 +14,9 @@ const Profile = () => {
     const [selectedCuisines, setSelectedCuisines] = useState(
         JSON.parse(localStorage.getItem('selectedCuisines')) || []
     );
+
+    // State to store favorite meals fetched from the API
+    const [favoriteMeals, setFavoriteMeals] = useState([]);
 
     // Function to handle changes in dietary restrictions dropdown
     const handleSelectChange = (e) => {
@@ -53,14 +52,12 @@ const Profile = () => {
         localStorage.setItem('selectedCuisines', JSON.stringify(selectedCuisines));
     }, [selectedCuisines]);
 
-    // Sample food data for FoodCards
-    const foodData = [
-        { name: "Spaghetti", ingredients: ["Pasta", "Tomato Sauce, Basil"], image: spaghetti },
-        { name: "Salad", ingredients: ["Lettuce", "Tomatoes", "Cucumbers"], image: salad },
-        { name: "Taco", ingredients: ["Lettuce", "Tomatoes", "Tortilla"], image: taco },
-        { name: "S'Mores", ingredients: ["Chocolate", "Crackers", "Marshmallow"], image: smores },
-        // Add more food items as needed
-    ];
+    // Effect to fetch favorite meals from the API
+    useEffect(() => {
+        fetch('http://localhost:8000/meals/getAllFavoriteMeals')
+            .then(response => response.json())
+            .then(data => setFavoriteMeals(data));
+    }, []);
 
     return (
         <Container className="mt-5">
@@ -107,11 +104,15 @@ const Profile = () => {
                             <Row className="mt-3">
                                 <Col>
                                     <div className="food-cards-container d-flex overflow-x-auto">
-                                        {foodData.map((food, index) => (
+                                    {favoriteMeals.map((meal, index) => (
+                                        meal && (
                                             <div key={index} className="food-card mr-3" style={{ marginRight: '10px'}}> {/* Set a fixed width */}
-                                                <FavoriteCard food={food} />
+                                                <FavoriteCard
+                                                    food={meal}
+                                                />
                                             </div>
-                                        ))}
+                                        )
+                                    ))}
                                     </div>
                                 </Col>
                             </Row>
