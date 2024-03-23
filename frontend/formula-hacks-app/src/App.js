@@ -1,8 +1,9 @@
 import MainPage from './MainPage';
+import Card from './Card';
 
 function App() {
   return (
-    <MainPage />
+    <Card />
   );
 }
 
