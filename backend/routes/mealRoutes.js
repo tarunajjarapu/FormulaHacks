@@ -12,11 +12,13 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
 router.get('/makeMeals', makeMeals)
-router.get('/getIngredientsList', getIngredientsList)
 router.put('/parseReceipt', upload.single('image'), parseReceipt)
+router.get('/getIngredientsList', getIngredientsList)
+
 router.get('/recommendMeals', recommendMeals)
 router.get('/makeGroceries', makeGroceries)
 router.get('/getAllFavoriteMeals', getAllFavoriteMeals)
+
 router.post('/getImageForMeal', getImageForMeal);
 router.put('/addMeal', addMeal)
 

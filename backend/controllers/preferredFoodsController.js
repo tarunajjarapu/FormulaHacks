@@ -32,7 +32,7 @@ const recommendMeals = asyncHandler(async (req, res) => {
         const result = await model.generateContent(prompt);
         const response = await result.response;
         const text = JSON.parse(response.text().replace(/```|json/ig, "").trim());
-        console.log(text)
+        // console.log(text)
         // const text = JSON.parse(response.text());
         res.status(201).json(text)
     } catch (error) {
