@@ -67,7 +67,7 @@ const makeMeals = asyncHandler(async (req, res) => {
         Only return the response in the JSON schema format ` + json_schema + `.\n` + `Ingredients:\n` + ingr_json + `Dietary Restrictions:\n` + diet_restr
         const result = await model.generateContent(prompt);
         const response = await result.response;
-        const text = response.text();
+        const text = JSON.parse(response.text());
 
         // const apiRes = {
         //     meals: text,
