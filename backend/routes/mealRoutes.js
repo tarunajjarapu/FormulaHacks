@@ -10,7 +10,6 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
 router.put('/makeMeals', makeMeals)
-router.put('/parseReceipt', parseReceipt)
 router.get('/getIngredientsList', getIngredientsList)
 router.put('/parseReceipt', upload.single('image'), parseReceipt)
 router.get('/recommendMeals', recommendMeals)
