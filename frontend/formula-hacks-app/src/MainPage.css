@@ -1,55 +1,69 @@
-.app-container {
-    display: flex;
-  }
-  
-  .ingredient-list {
-    flex: 1;
-    padding: 20px;
-    background-color: #f9f9f9; /* Off-white background color */
-    position: relative;
-  }
-  
-  .scrollable-list {
-    max-height: 300px;
-    overflow-y: auto;
-  }
-  
-  .ingredient-item {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-  }
-  
-  .button-container {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-  }
-  
-  .plus-button,
-  .edit-button {
-    margin-left: 10px;
-    border-radius: 50%; /* Circular buttons */
-    width: 40px; /* Adjust button size as needed */
-    height: 40px;
-    background-color: #333; /* Button color */
-    color: white; /* Text color */
-    border: none;
-    cursor: pointer;
-  }
-  
-  .action-buttons {
-    flex: 1;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .action-button {
-    margin-bottom: 10px;
-  }
-  
-  .profile-button {
-    padding: 20px;
-  }
-  
+/* MainPage.css */
+
+body {
+  background-color: #FAF9F6;
+}
+
+/* Style for the container div */
+.container {
+  display: flex;
+  align-items: center;
+}
+
+/* Style for the grocery list table container */
+.table-container {
+  text-align: center;
+  width: 25%; /* Adjust width as needed */
+  max-height: 400px; /* Maximum height for the table container */
+  overflow-y: auto; /* Enable vertical scrolling when content exceeds max height */
+  margin-left: 20%; /* Set left margin to 25% */
+  margin-top: 10%;
+}
+
+/* Style for the grocery list table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Style for table header */
+th {
+  padding: 8px;
+}
+
+/* Style for table data cells */
+td {
+  padding: 8px;
+}
+
+/* Style for hover effect on rows */
+tbody tr:hover {
+  background-color: #dddddd;
+}
+
+/* Style for button column */
+.button-column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-top: 20px;
+}
+
+/* Style for rectangular buttons */
+.rectangular-button {
+  margin-left: 200px;
+  padding: 10px 20px;
+  margin-top: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  height: 200px;
+  width: 500px;
+  margin-top: 50px;
+}
+
+.rectangular-button:hover {
+  background-color: #0056b3;
+}

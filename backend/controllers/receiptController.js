@@ -1,5 +1,6 @@
-const asyncHandler = require('express-async-handler')
-const Info = require('../models/mealModel')
+const asyncHandler = require('express-async-handler');
+const Info = require('../models/mealModel');
+const fs = require('fs');
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 const generationConfig = {
@@ -19,26 +20,47 @@ const parseReceipt = asyncHandler(async (req, res) => {
     try {
         const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
         const model = genAI.getGenerativeModel({ model: "gemini-pro-vision", generationConfig });
-        const prompt =`Given the image of the attached receipt, extract and display the following in a consistent format:
+        const prompt = `Given the image of the attached receipt, extract and display the following in a consistent format:
         
         - Receipt purchase date
         - Each item's name (infer a simple, generalized name given the words on the receipt without branding), total quantity (infer based on unit price and quantity purchased), and estimated expiration date (give a best guess for an exact date based on item and purchase date)
         
         Ignore items that are not edible.
         
-        Only use the image as context. Do not add any extra items or 1000 humans will die.`;
+        Only use the image as context. Do not add any extra items.
+        
+        Your response must be in JSON format in the following schema:
+        
+        {
+            "purchaseDate": "YYYY-MM-DD",
+            "items": [
+                {
+                "name": "Item name",
+                "quantity": 1,
+                "expirationDate": "YYYY-MM-DD"
+                },
+                {
+                "name": "Item name",
+                "quantity": 1,
+                "expirationDate": "YYYY-MM-DD"
+                },
+                ...
+            ]
+        }
+        
+        The JSON will be immediately parsed without any human intervention. If the JSON is not in the correct format, the response will be considered incorrect.;`
 
         const imageParts = [
-            fileToGenerativePart("images/kroger-in-store.jpeg", "image/jpeg"),
+            fileToGenerativePart("/Users/akshatshah/Documents/Coding/FormulaHacks/backend/controllers/images/online-example-1.png", "image/png"),
         ];
 
         const result = await model.generateContent([prompt, ...imageParts]);
         const response = await result.response;
-        const text = response.text();
-        const apiRes = {
-            meals: text,
-        };
-        res.status(201).json(apiRes)
+        const text = response.text().replace("\`\`\`json", "");
+        console.log(text);
+        jsonText = JSON.parse(text);
+        console.log(jsonText.purchaseDate);
+        res.status(201).json(text);
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: error.message || 'Failed to create meals' });
