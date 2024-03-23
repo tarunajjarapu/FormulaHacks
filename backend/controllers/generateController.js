@@ -90,8 +90,7 @@ const getIngredientsList = asyncHandler(async (req, res) => {
     try {
         const documents = await Ingredients.find({});
         // Convert documents to JSON
-        const jsonResult = JSON.stringify(documents, null, 2);
-        res.status(201).json(jsonResult) // Return JSON data
+        res.status(201).json(documents) // Return JSON data
     } catch (error) {
         console.error('Error querying MongoDB:', error);
         res.status(400)

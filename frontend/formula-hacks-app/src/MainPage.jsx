@@ -13,7 +13,46 @@ class IngredientList extends React.Component {
         // Add more ingredients as needed
       ],
     };
+
+    
   }
+
+  componentDidMount() {
+    // Call your API to get initial data
+    this.fetchIngredients();
+    
+    // Set up interval to periodically refresh data
+    this.interval = setInterval(this.fetchIngredients, 5000);
+  }
+
+  componentWillUnmount() {
+    // Clear the interval when the component is unmounted
+    clearInterval(this.interval);
+  }
+
+  fetchIngredients = async () => {
+    try {
+      // Make API call to fetch updated data
+      const response = await fetch('http://localhost:8000/meals/getIngredientsList');
+      if (!response.ok) {
+        throw new Error('Failed to fetch ingredients');
+      }
+      const data = await response.json();
+
+      
+      
+      // Check if the data is an array
+      if (Array.isArray(data)) {
+        // Update state with new data
+        this.setState({ ingredients: data });
+      } else {
+        throw new Error('Invalid data format: Expected an array');
+      }
+    } catch (error) {
+      console.error('Error fetching ingredients:', error);
+    }
+  }
+  
 
   render() {
     const { ingredients } = this.state;
