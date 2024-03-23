@@ -1,24 +1,10 @@
-import { AuthProvider, useAuth } from '@propelauth/react';
 import MainPage from './MainPage';
+import FoodList from './FoodList'
 
-const App = () => {
+function App() {
   return (
-    <AuthProvider authUrl={process.env.REACT_APP_PROPEL_AUTH_URL}>
-      <div className="App">
-        <ProtectedComponent />
-      </div>
-    </AuthProvider>
+    <FoodList />
   );
-};
-
-const ProtectedComponent = () => {
-  const { isAuthenticated, user } = useAuth();
-
-  return isAuthenticated ? (
-    <div>Hello, {user.email}</div>
-  ) : (
-    <div>Please log in</div>
-  );
-};
+}
 
 export default App;
