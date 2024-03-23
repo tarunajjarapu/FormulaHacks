@@ -5,7 +5,7 @@ const FoodCard = ({ food }) => {
   return (
     <div className="food-card">
       <Card style={{ width: '18rem' }}>
-        {/* <Card.Img variant="top" src={food.image} /> */}
+        {food.image && <Card.Img variant="top" src={food.image} />}
         <Card.Body>
           <Card.Title><strong>{food.name}</strong></Card.Title>
           <Card.Text>
