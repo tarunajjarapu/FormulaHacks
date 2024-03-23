@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const db = require('../config/db.js');
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const { json } = require('express');
+const Meal = require('../models/mealModel');
 
 
 const getAllFavoriteMeals = async() => {
@@ -38,9 +39,8 @@ const makeGroceries = asyncHandler(async (req, res) => {
         
         const fav_meals = await getAllFavoriteMeals();
         console.log("fav meals: " + fav_meals);
-        const prompt = `Given the following list of meals, please give me a grocery list the with ingredient
-        names and questions in the following JSON format: \n` + json_schema + `\n Populate the start and end keys with \"-1\"` + 
-        "\nFavorite Meals: \n" + fav_meals;
+        const prompt = `Given the following list of meals, please give me a grocery list with ingredient names and quantities for all the meals in the following JSON format: \n` + json_schema + `\n Populate the start and end keys with \"-1\" Populate the quantity with what you think would be right for the food.` +
+        "Favorite Meals: \n" + fav_meals;
 
         const result = await model.generateContent(prompt);
         const response = await result.response;
