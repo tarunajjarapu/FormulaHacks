@@ -8,4 +8,4 @@ Node.JS, Express, MongoDB, React.JS
 # https://devpost.com/software/tindora
 
 
-[![Tindora Demo Video](https://img.youtube.com/vi/yWKjd76fJlQ&ab_channel=TarunAjjarapu/0.jpg)](https://www.youtube.com/watch?v=yWKjd76fJlQ&ab_channel=TarunAjjarapu)
+[![Tindora Demo Video](https://img.youtube.com/vi/yWKjd76fJlQ/0.jpg)](https://www.youtube.com/watch?v=yWKjd76fJlQ&ab_channel=TarunAjjarapu)
