@@ -1,0 +1,41 @@
+name: Deploy to Firebase Hosting on merge
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'  # Use the Node.js version required by your project
+
+      - name: Install backend dependencies
+        run: |
+          npm install
+
+      - name: Start backend
+        run: |
+          npm run start-backend
+
+      - name: Install frontend dependencies and build
+        run: |
+          cd frontend/formula-hacks-app
+          npm install
+          npm run build
+
+      - name: Deploy to Firebase Hosting
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_TINDORA_ABD82 }}
+          channelId: live
+          projectId: tindora-abd82
