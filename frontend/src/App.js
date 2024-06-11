@@ -24,11 +24,30 @@
 import React from 'react';
 import './App.css';
 import LandingPage from './pages/LandingPage/LandingPage';
+import MealCard from './pages/MealCard/MealCard';
+import saladImg from './assets/salad.jpg';
+import MealGeneration from './pages/MealGeneration/MealGeneration';
+
+const salad = {
+  image: saladImg,
+  name: 'Veggie Supreme Salad',
+  calories: 150,
+  cookTime: 10,
+  ingredients: {
+    'Lettuce': '2 cups',
+    'Tomato': '1 cup',
+    'Cucumber': '1 cup',
+    'Olive Oil': '2 tbsp',
+    'Lemon Juice': '1 tbsp',
+    'Salt': 'to taste',
+    'Pepper': 'to taste',
+  },
+};
 
 function App() {
   return (
     <div className="App">
-      <LandingPage />
+      <MealGeneration meal={salad} />
     </div>
   );
 }

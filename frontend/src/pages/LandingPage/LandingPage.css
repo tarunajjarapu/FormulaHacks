@@ -31,16 +31,12 @@
   text-align: center;
 }
 
-.profile-section {
-  
-}
-
 .profile-button {
   position: relative;
   width: 80px;
   height: 80px;
   border-radius: 100%;
-  border: 1px solid #ECCA9C;
+  border: 0px solid #ECCA9C;
   background-color: #ECCA9C;
   cursor: pointer;
   display: flex;

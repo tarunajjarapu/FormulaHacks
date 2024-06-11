@@ -42,7 +42,7 @@ const LandingPage = () => {
             swipe right and take a bite!
           </div>
         </div>
-        <div className="profile-section">
+        <div>
           <button className="profile-button">
             <img src={profile} alt="Profile" />
           </button>

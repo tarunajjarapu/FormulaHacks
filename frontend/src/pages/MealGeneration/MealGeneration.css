@@ -1,0 +1,26 @@
+.meal-card-generation {
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+  }
+  
+  .flash-green {
+    animation: flash-green 0.5s;
+  }
+  
+  .flash-red {
+    animation: flash-red 0.5s;
+  }
+  
+  @keyframes flash-green {
+    0% { background-color: #fff; }
+    50% { background-color: #aaf0aa; }
+    100% { background-color: #fff; }
+  }
+  
+  @keyframes flash-red {
+    0% { background-color: #fff; }
+    50% { background-color: #ffaaaa; }
+    100% { background-color: #fff; }
+  }
+  
