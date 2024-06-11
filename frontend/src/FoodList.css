@@ -1,0 +1,18 @@
+.food-list-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Adjust this value if needed */
+  }
+  
+  .food-list {
+    text-align: center;
+  }
+
+  .fetch-button {
+    margin-top: 20px;
+  }
+  
+  .no-meal-available {
+    margin-top: 20px;
+  }

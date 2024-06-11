@@ -1,0 +1,17 @@
+.food-card {
+    position: relative;
+  }
+  
+  .left-button {
+    position: absolute;
+    right: 50%;
+    left: 0;
+    transform: translateY(-50%);
+  }
+  
+  .right-button {
+    position: absolute;
+    left: 50%;
+    right: 0;
+    transform: translateY(-50%);
+  }
