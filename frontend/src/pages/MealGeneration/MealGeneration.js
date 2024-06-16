@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import MealCard from '../MealCard/MealCard'; // Import your MealCard component
 import './MealGeneration.css';
+import saladImg from '../../assets/salad.jpg';
 
-const MealGeneration = ({ meal }) => {
+const MealGeneration = () => {
   const [isDragging, setIsDragging] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
@@ -10,7 +11,7 @@ const MealGeneration = ({ meal }) => {
     // Set initial position to center of the screen when component mounts
     const mealCard = document.querySelector('.meal-card');
     const centerLeft = (window.innerWidth - mealCard.offsetWidth) / 2;
-    const centerTop = (window.innerHeight - (mealCard.offsetHeight + 392)) / 2;
+    const centerTop = (window.innerHeight - mealCard.offsetHeight) / 2;
     console.log("RESET Inner Width: ", window.innerWidth)
     console.log("RESET Inner Height: ", window.innerHeight)
     console.log("RESET OFF Width: ", mealCard.offsetWidth)
@@ -78,6 +79,22 @@ const MealGeneration = ({ meal }) => {
     mealCard.style.top = `${centerTop}px`;
 
     document.body.classList.remove('flash-green', 'flash-red');
+  };
+
+  const meal = {
+    image: saladImg,
+    name: 'Veggie Supreme Salad',
+    calories: 150,
+    cookTime: 10,
+    ingredients: {
+      'Lettuce': '2 cups',
+      'Tomato': '1 cup',
+      'Cucumber': '1 cup',
+      'Olive Oil': '2 tbsp',
+      'Lemon Juice': '1 tbsp',
+      'Salt': 'to taste',
+      'Pepper': 'to taste',
+    },
   };
 
   return (

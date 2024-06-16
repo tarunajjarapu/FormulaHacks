@@ -1,4 +1,4 @@
-  .login-page {
+  .registration-page {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -7,23 +7,23 @@
     font-family: 'Montserrat', sans-serif;
   }
   
-  .login-box {
+  .registration-box {
     background-color: white;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 40px;
-    height: 350px;
-    width: 350px;
+    height: 400px;
+    width: 400px;
     text-align: center;
   }
   
-  .login-logo {
+  .registration-logo {
     width: 150px;
     height: auto;
     margin-bottom: 20px;
   }
   
-  .login-input {
+  .registration-input {
     width: 100%;
     padding: 10px;
     margin-bottom: 20px;
@@ -31,7 +31,7 @@
     border-radius: 5px;
   }
   
-  .login-button {
+  .registration-button {
     width: 100%;
     padding: 10px;
     background-color: #4caf50;
@@ -39,16 +39,6 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-bottom: 10px;
-  }
-  
-  .signup-link {
-    font-size: 14px;
-    color: #007BFF;
-    cursor: pointer;
-  }
-  
-  .signup-link span {
-    text-decoration: underline;
+    margin-bottom: 20px;
   }
   

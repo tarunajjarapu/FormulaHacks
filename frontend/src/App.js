@@ -22,35 +22,28 @@
 
 
 import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import LandingPage from './pages/LandingPage/LandingPage';
 import MealCard from './pages/MealCard/MealCard';
-import saladImg from './assets/salad.jpg';
 import MealGeneration from './pages/MealGeneration/MealGeneration';
-import ProfileScreen from './pages/Profile/Profile';
+import Profile from './pages/Profile/Profile';
+import Login from './pages/Login/Login';
+import Registration from './pages/Registration/Registration';
 
-const salad = {
-  image: saladImg,
-  name: 'Veggie Supreme Salad',
-  calories: 150,
-  cookTime: 10,
-  ingredients: {
-    'Lettuce': '2 cups',
-    'Tomato': '1 cup',
-    'Cucumber': '1 cup',
-    'Olive Oil': '2 tbsp',
-    'Lemon Juice': '1 tbsp',
-    'Salt': 'to taste',
-    'Pepper': 'to taste',
-  },
-};
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <ProfileScreen />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/register" element={<Registration />} />
+        <Route path="/home" element={<LandingPage />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/generate-meals" element={<MealGeneration />} />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;

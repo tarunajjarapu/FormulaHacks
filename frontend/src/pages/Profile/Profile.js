@@ -15,7 +15,7 @@ import './Profile.css';
 
 Chart.register(ArcElement, Tooltip);
 
-const ProfileScreen = () => {
+const Profile = () => {
     const dietaryOptions = [
         { value: 'vegetarian', label: 'Vegetarian', color: '#4caf50' },
         { value: 'vegan', label: 'Vegan', color: '#ff9800' },
@@ -160,4 +160,4 @@ const ProfileScreen = () => {
   );
 };
 
-export default ProfileScreen;
+export default Profile;

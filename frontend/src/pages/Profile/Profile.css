@@ -72,7 +72,7 @@
 .profile-selects {
   display: flex;
   flex-direction: column;
-  gap: 20px; /* Space between multi-selects */
+  gap: 20px;
   width: 100%;
 }
 
@@ -149,13 +149,13 @@
 
 .favorites-scroll {
   display: flex;
-  overflow-x: auto; /* Enable horizontal scrolling */
+  overflow-x: auto;
   white-space: nowrap;
   border-radius: 8px;
 }
 
 .favorites-scroll .meal-card {
   display: inline-block;
-  flex: 0 0 300px; /* Fixed width for each card */
-  margin-right: 10px; /* Optional: space between cards */
+  flex: 0 0 300px;
+  margin-right: 20px;
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './LandingPage.css';
 import receipt from '../../assets/receipt.png'
 import tomato from '../../assets/tomato.png'
@@ -33,6 +34,20 @@ const ingredients = [
 ];
 
 const LandingPage = () => {
+  const navigate = useNavigate();
+
+  const handleProfile = () => {
+    navigate('/profile');
+  };
+
+  const handleMealGeneration = () => {
+    navigate('/generate-meals');
+  };
+
+  const handleGroceryGeneration = () => {
+    navigate('/generate-meals');
+  };
+
   return (
     <div className="landing-page">
       <div className="title-section">
@@ -43,7 +58,7 @@ const LandingPage = () => {
           </div>
         </div>
         <div>
-          <button className="profile-button">
+          <button className="profile-button" onClick={handleProfile}>
             <img src={profile} alt="Profile" />
           </button>
         </div>
@@ -90,11 +105,11 @@ const LandingPage = () => {
         </div>
         <div className='generate-section'>
           <button className="generate-button">
-            <img src={meal} alt="Generate Meals" />
+            <img src={meal} alt="Generate Meals" onClick={handleMealGeneration}/>
             <span>Generate Meals</span>
           </button>
           <button className="generate-button">
-            <img src={grocery} alt="Generate Groceries" />
+            <img src={grocery} alt="Generate Groceries" onClick={handleGroceryGeneration}/>
             <span>Generate Groceries</span>
           </button>
         </div>

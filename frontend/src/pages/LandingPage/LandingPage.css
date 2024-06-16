@@ -126,6 +126,7 @@
   margin: 0;
   z-index: 1;
   font-family: 'Montserrat', sans-serif;
+  text-align: center;
 }
 
 .button-container {
@@ -285,4 +286,5 @@
   margin: 0;
   z-index: 1;
   font-family: 'Montserrat', sans-serif;
+  text-align: center;
 }
