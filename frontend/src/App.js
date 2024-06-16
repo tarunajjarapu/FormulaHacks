@@ -30,6 +30,7 @@ import MealGeneration from './pages/MealGeneration/MealGeneration';
 import Profile from './pages/Profile/Profile';
 import Login from './pages/Login/Login';
 import Registration from './pages/Registration/Registration';
+import Groceries from './pages/Groceries/Groceries';
 
 
 const App = () => {
@@ -41,6 +42,7 @@ const App = () => {
         <Route path="/home" element={<LandingPage />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/generate-meals" element={<MealGeneration />} />
+        <Route path="/generate-groceries" element={<Groceries />} />
       </Routes>
     </Router>
   );

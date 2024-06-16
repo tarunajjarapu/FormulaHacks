@@ -45,7 +45,7 @@ const LandingPage = () => {
   };
 
   const handleGroceryGeneration = () => {
-    navigate('/generate-meals');
+    navigate('/generate-groceries');
   };
 
   return (
