@@ -1,0 +1,161 @@
+.profile-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  height: 80%;
+  margin: 0 auto;
+  background-color: #f0f0f0;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.profile-top-section {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.profile-card {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  width: 22%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-info {
+  text-align: center;
+}
+
+.profile-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  border-width: 1px;
+  border-color: black;
+  border-style: solid;
+}
+
+.profile-name {
+  color: black;
+  font-size: 30px;
+}
+
+.profile-email {
+  color: grey;
+  font-size: 15px;
+}
+
+.meals-generated {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.meals-generated p {
+  color: #007BFF;
+  font-size: 24px;
+  margin: 0;
+  font-weight: bold;
+}
+
+.meals-generated span {
+  color: grey;
+}
+
+.profile-selects {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Space between multi-selects */
+  width: 100%;
+}
+
+.profile-facts-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 0;
+  width: 25%;
+}
+
+.profile-facts-card-inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 20px;
+}
+
+.profile-fact {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 10px;
+  flex: 1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.fact-icon {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.profile-fact p {
+  margin: 0;
+  font-size: 18px;
+  color: #333;
+  text-align: center;
+  width: 100%;
+}
+
+.profile-fact strong {
+  color: #007BFF;
+  font-size: 20px;
+  text-align: center;
+}
+
+.fact-icon {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.profile-fact p {
+  margin: 0;
+  font-size: 18px;
+  color: #333;
+  text-align: center;
+}
+
+.profile-fact strong {
+  color: #007BFF;
+  font-size: 20px;
+  text-align: center;
+}
+
+.profile-bottom-section {
+  width: 100%;
+}
+
+.favorites-scroll {
+  display: flex;
+  overflow-x: auto; /* Enable horizontal scrolling */
+  white-space: nowrap;
+  border-radius: 8px;
+}
+
+.favorites-scroll .meal-card {
+  display: inline-block;
+  flex: 0 0 300px; /* Fixed width for each card */
+  margin-right: 10px; /* Optional: space between cards */
+}

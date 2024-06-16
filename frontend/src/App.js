@@ -27,6 +27,7 @@ import LandingPage from './pages/LandingPage/LandingPage';
 import MealCard from './pages/MealCard/MealCard';
 import saladImg from './assets/salad.jpg';
 import MealGeneration from './pages/MealGeneration/MealGeneration';
+import ProfileScreen from './pages/Profile/Profile';
 
 const salad = {
   image: saladImg,
@@ -47,7 +48,7 @@ const salad = {
 function App() {
   return (
     <div className="App">
-      <MealGeneration meal={salad} />
+      <ProfileScreen />
     </div>
   );
 }
